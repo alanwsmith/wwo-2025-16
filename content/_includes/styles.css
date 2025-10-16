@@ -1,1 +1,58 @@
-/* no extra styles for this site */
+@font-face {
+  font-family: 'Decovar';
+  src: url('/fonts/DecovarAlpha-VF.ttf');
+}
+
+:root {
+  --SKLA: 0; 
+  --SKLB: 0; 
+  --SKLD: 0; 
+  --TRMA: 0; 
+  --TRMB: 0; 
+  --TRMC: 0; 
+  --TRMD: 0; 
+  --TRME: 0; 
+  --TRMF: 0; 
+  --TRMG: 0; 
+  --TRMK: 0; 
+  --TRML: 0; 
+  --BLDA: 0; 
+  --BLDB: 0;
+  --l-light: 0;
+  --c-light: 0;
+  --h-light: ;
+  --l-dark: 0.9;
+  --c-dark: 0.0;
+  --h-dark: 150;
+  --color: oklch(var(--l-light) var(--c-light) var(--h-light));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color: oklch(var(--l-dark) var(--c-dark) var(--h-dark));
+  }
+}
+
+.shifter {
+  display: flex;
+  color: var(--color);
+  font-size: min(15vw, 6rem);
+  font-family: Decovar;
+  font-variation-settings: 
+    'SKLA' var(--SKLA), 
+    'SKLB' var(--SKLB), 
+    'SKLD' var(--SKLD), 
+    'TRMA' var(--TRMA), 
+    'TRMB' var(--TRMB), 
+    'TRMC' var(--TRMC), 
+    'TRMD' var(--TRMD), 
+    'TRME' var(--TRME), 
+    'TRMF' var(--TRMF), 
+    'TRMG' var(--TRMG), 
+    'TRMK' var(--TRMK), 
+    'TRML' var(--TRML), 
+    'BLDA' var(--BLDA), 
+    'BLDB' var(--BLDB);
+  justify-content: center;
+  transition: font-variation-settings 2.6s, color 2.6s;
+}
