@@ -2201,12 +2201,12 @@ code {
   --TRML: 0; 
   --BLDA: 0; 
   --BLDB: 0;
-  --l-light: 0.1;
-  --c-light: 0.1;
-  --h-light: 200;
+  --l-light: 0;
+  --c-light: 0;
+  --h-light: ;
   --l-dark: 0.9;
   --c-dark: 0.0;
-  --h-dark: 200;
+  --h-dark: 150;
   --color: oklch(var(--l-light) var(--c-light) var(--h-light));
 }
 
@@ -2237,7 +2237,7 @@ code {
     'BLDA' var(--BLDA), 
     'BLDB' var(--BLDB);
   justify-content: center;
-  transition: font-variation-settings 2.6s;
+  transition: font-variation-settings 2.6s, color 2.6s;
 }    </style>
 
     <script>
@@ -2337,12 +2337,28 @@ const vars = {
     "max": 1000,
   },
   "l-light": {
-    min: 0,
+    min: 0.7,
     max: 1,
   },
-  "l-light": {
+  "c-light": {
+    min: 0.0,
+    max: 0.2,
+  },
+  "h-light": {
     min: 0,
+    max: 360,
+  },
+  "l-dark": {
+    min: 0.7,
     max: 1,
+  },
+  "c-dark": {
+    min: 0.0,
+    max: 0.2,
+  },
+  "h-dark": {
+    min: 0,
+    max: 360,
   },
 };
 
@@ -2392,15 +2408,33 @@ window.TransitionMaker = class {
       </header>
       <main class="default-width">
 <div class="project-wrapper">
-<bitty-2-0 data-connect="TransitionMaker" data-send="shift">
+<bitty-2-0 
+  data-connect="TransitionMaker" 
+  data-send="shift"
+>
   <div class="shifter">TRANSITION</div>
 </bitty-2-0>
 </div>
 
 <h3>Details</h3>
-<p>TODO: Write the description</p>
+<p>
+  Playing around with the 
+  <a href="https://github.com/googlefonts/decovar">Decovar variable font</a>.
+  Every few seconds I randomize 14 of the 
+  different axis values between 0 and 1000. 
+  CSS shifts the shape over a few seconds
+  and then back again. Colors get the
+  same treatment. 
+</p>
+
+
+<p>Here's the <a href="https://bitty.alanwsmith.com/">bitty</a>
+  based code that does the work:</p>
 <h3>The HTML</h3>
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag custom html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag custom html">bitty-2-0</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">data-connect</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>TransitionMaker<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">data-send</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>shift<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag custom html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag custom html">bitty-2-0</span> 
+<span class="line-marker"></span>  <span class="meta attribute-with-value html"><span class="entity other attribute-name html">data-connect</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>TransitionMaker<span class="punctuation definition string end html">&quot;</span></span></span> 
+<span class="line-marker"></span>  <span class="meta attribute-with-value html"><span class="entity other attribute-name html">data-send</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>shift<span class="punctuation definition string end html">&quot;</span></span></span>
+<span class="line-marker"></span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span> <span class="meta attribute-with-value class html"><span class="entity other attribute-name class html">class</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value class html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span></span></span><span class="meta attribute-with-value class html"><span class="string quoted double html"><span class="meta class-name html">shifter</span><span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>TRANSITION<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag custom html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag custom html">bitty-2-0</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
 
@@ -2425,12 +2459,12 @@ window.TransitionMaker = class {
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">TRML</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span></span><span class="punctuation terminator rule css">;</span> 
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">BLDA</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span></span><span class="punctuation terminator rule css">;</span> 
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">BLDB</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span></span><span class="punctuation terminator rule css">;</span>
-<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">l-light</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span><span class="constant numeric css">.1</span></span><span class="punctuation terminator rule css">;</span>
-<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">c-light</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span><span class="constant numeric css">.1</span></span><span class="punctuation terminator rule css">;</span>
-<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">h-light</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">200</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">l-light</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">c-light</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">h-light</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="punctuation terminator rule css">;</span>
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">l-dark</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span><span class="constant numeric css">.9</span></span><span class="punctuation terminator rule css">;</span>
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">c-dark</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span><span class="constant numeric css">.0</span></span><span class="punctuation terminator rule css">;</span>
-<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">h-dark</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">200</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">h-dark</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">150</span></span><span class="punctuation terminator rule css">;</span>
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">color</span></span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css">oklch(<span class="meta function-call css"><span class="support function var css">var</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">l-light</span></span></span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span> <span class="meta function-call css"><span class="support function var css">var</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">c-light</span></span></span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span> <span class="meta function-call css"><span class="support function var css">var</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">h-light</span></span></span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span></span>);
 <span class="line-marker"></span></span><span class="punctuation section property-list css">}</span>
 <span class="line-marker"></span>
@@ -2461,7 +2495,7 @@ window.TransitionMaker = class {
 <span class="line-marker"></span>    <span class="string quoted single css"><span class="punctuation definition string begin css">&#39;</span>BLDA<span class="punctuation definition string end css">&#39;</span></span> <span class="meta function-call css"><span class="support function var css">var</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">BLDA</span></span></span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span>, 
 <span class="line-marker"></span>    <span class="string quoted single css"><span class="punctuation definition string begin css">&#39;</span>BLDB<span class="punctuation definition string end css">&#39;</span></span> <span class="meta function-call css"><span class="support function var css">var</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">BLDB</span></span></span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span></span><span class="punctuation terminator rule css">;</span>
 <span class="line-marker"></span>  <span class="meta property-name css"><span class="support type property-name css">justify-content</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="support constant property-value css">center</span></span><span class="punctuation terminator rule css">;</span>
-<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type property-name css">transition</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="support constant property-value css">font</span>-variation-settings <span class="constant numeric css">2.6<span class="keyword other unit css">s</span></span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type property-name css">transition</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="support constant property-value css">font</span>-variation-settings <span class="constant numeric css">2.6<span class="keyword other unit css">s</span></span>, <span class="support constant property-value css">color</span> <span class="constant numeric css">2.6<span class="keyword other unit css">s</span></span></span><span class="punctuation terminator rule css">;</span>
 <span class="line-marker"></span></span><span class="punctuation section property-list css">}</span></span></code></pre>
 
 <h3>The JavaScript</h3>
@@ -2523,12 +2557,28 @@ window.TransitionMaker = class {
 <span class="line-marker"></span>    <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>max<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">1000</span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>l-light<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
-<span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0.7</span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span>    <span class="meta object-literal key js">max</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">1</span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
-<span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>l-light<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>c-light<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0.0</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">max</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0.2</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>h-light<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
 <span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">max</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">360</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>l-dark<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0.7</span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span>    <span class="meta object-literal key js">max</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">1</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>c-dark<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0.0</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">max</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0.2</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>  <span class="meta object-literal key js"><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>h-dark<span class="punctuation definition string end js">&quot;</span></span></span><span class="punctuation separator key-value js">:</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">min</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">0</span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">max</span><span class="punctuation separator key-value js">:</span> <span class="constant numeric js">360</span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span>  <span class="punctuation section block js">}</span></span><span class="punctuation separator comma js">,</span>
 <span class="line-marker"></span><span class="punctuation section block js">}</span></span><span class="punctuation terminator statement js">;</span>
 <span class="line-marker"></span>

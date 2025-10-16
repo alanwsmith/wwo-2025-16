@@ -18,12 +18,12 @@
   --TRML: 0; 
   --BLDA: 0; 
   --BLDB: 0;
-  --l-light: 0.1;
-  --c-light: 0.1;
-  --h-light: 200;
+  --l-light: 0;
+  --c-light: 0;
+  --h-light: ;
   --l-dark: 0.9;
   --c-dark: 0.0;
-  --h-dark: 200;
+  --h-dark: 150;
   --color: oklch(var(--l-light) var(--c-light) var(--h-light));
 }
 
@@ -54,5 +54,5 @@
     'BLDA' var(--BLDA), 
     'BLDB' var(--BLDB);
   justify-content: center;
-  transition: font-variation-settings 2.6s;
+  transition: font-variation-settings 2.6s, color 2.6s;
 }

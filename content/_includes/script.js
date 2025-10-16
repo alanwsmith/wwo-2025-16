@@ -56,12 +56,28 @@ const vars = {
     "max": 1000,
   },
   "l-light": {
-    min: 0,
+    min: 0.7,
     max: 1,
   },
-  "l-light": {
+  "c-light": {
+    min: 0.0,
+    max: 0.2,
+  },
+  "h-light": {
     min: 0,
+    max: 360,
+  },
+  "l-dark": {
+    min: 0.7,
     max: 1,
+  },
+  "c-dark": {
+    min: 0.0,
+    max: 0.2,
+  },
+  "h-dark": {
+    min: 0,
+    max: 360,
   },
 };
 
